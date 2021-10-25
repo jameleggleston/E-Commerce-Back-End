@@ -47,8 +47,31 @@ router.post('/', async(req, res) => {
   }
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', async(req, res) => {
   // update a category by its `id` value
+  try {
+    // Define a variable containing the updated category information through the use of the update sequelize method and defining which files can be update
+    const updatedCategory = await Category.update(
+      {
+        category_name: req.body.category_name
+      },
+      {
+        // The where is defined as the req.params.id in order to specify which category to update
+        where: {
+          id: req.params.id
+        }
+      }
+    );
+
+      if(!updatedCategory){
+        res.status(404).json({message: 'No category found with this id.'});
+        return;
+      }
+
+    res.status(201).json(updatedCategory);
+  } catch (err) {
+    res.status(400).json(err);
+  }
 });
 
 router.delete('/:id', (req, res) => {
