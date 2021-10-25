@@ -62,7 +62,6 @@ router.put('/:id', async(req, res) => {
         }
       }
     );
-
       if(!updatedCategory){
         res.status(404).json({message: 'No category found with this id.'});
         return;
@@ -74,8 +73,24 @@ router.put('/:id', async(req, res) => {
   }
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async(req, res) => {
   // delete a category by its `id` value
+  try {
+    // Similar to the update method in sequelize you define a where object in the destroy method in sequelize and that where being defined as the req.params.id
+    const deletedCategory = await Category.destroy({
+      where: {
+        id: req.params.id
+      }
+    });
+
+    if(!deletedCategory){
+      res.status(404).json({message: "No category found with this id."});
+      return;
+    }
+    res.status(200).json(deletedCategory);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 module.exports = router;
