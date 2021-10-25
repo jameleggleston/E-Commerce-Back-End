@@ -4,8 +4,18 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 // The `/api/products` endpoint
 
 // get all products
-router.get('/', (req, res) => {
+router.get('/', async(req, res) => {
   // find all products
+  try {
+    // Using the findAll method in the sequelize library get all Products in database
+    const productsData = await Product.findAll({
+      // Include category this product falls under and the tags for products through the ProductTag model
+      include: [{model: Category, as: 'category'}, {model: Tag, through: ProductTag, as: 'tagIds'}]
+    });
+    res.status(200).json(productsData);
+  } catch (err) {
+    res.status(500).json(err)
+  }
   // be sure to include its associated Category and Tag data
 });
 
