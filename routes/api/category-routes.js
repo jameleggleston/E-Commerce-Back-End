@@ -29,7 +29,7 @@ router.get('/:id', async(req, res) => {
       res.status(404).json({messgae: 'No Category found with that id.'});
       return;
     }
-    res.status(200).json(SingleCategoryData);
+    res.status(200).json(singleCategoryData);
   } catch (err) {
     res.status(500).json(err);
   }
