@@ -42,12 +42,18 @@ Once your server is up and running you will need an application like Postman or 
 
 example of how application works:</b>
 
+Category Routes
+https://user-images.githubusercontent.com/74510050/139376703-7d24ae69-9d82-4c87-aa71-4276416be30f.mp4 </b>
  
 
 ## Questions
 Do you have questions? Contact me here:
 * [Github](https://github.com/jameleggleston)
 * [Email](jamel.eggleston@gmail.com)
+
+
+
+https://user-images.githubusercontent.com/74510050/139376703-7d24ae69-9d82-4c87-aa71-4276416be30f.mp4
 
 
 
