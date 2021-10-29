@@ -18,12 +18,30 @@ so that my company can compete with other e-commerce companie.
  
 
 ## Usgae
+The first thing you want to do is a npm install. 
+```bash
+npm i
+```
+Next you want to log into SQL and run your schema to create the database if it doesn't already exist.
+```bash
+source db/schema.sql
+```
+Next run you have to seed the database.
+```bash
+npm run seed 
+```
+Next you need to start the server.
+```bash
+npm start 
+```
+
+Once your server is up and running you will need an application like Postman or Insomnia to test your routes. 
 
 
 ## Test
 
 example of how application works:</b>
-![caption]()
+
  
 
 ## Questions
