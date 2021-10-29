@@ -9,13 +9,14 @@ router.get('/', async(req, res) => {
     // Create variable that contains all tags using the findAll method in the sequelize library
     const tagsData = await Tag.findAll({
       // Use include in order to return Products that apply to tag through the ProductTag model
-      include: [{ model: ProductTag }]
+      include: [{ model: Product, as: 'productTags' }]
     });
 
     // If there are no errors return a status of 200 and the tags data in json format
     res.status(200).json(tagsData);
     // If there are any errors they will be in the catch, a 500 status code is returned aswell as the error
   } catch (err) {
+    console.log(err)
     res.status(500).json(err);
   }
 });
@@ -25,7 +26,7 @@ router.get('/:id', async(req, res) => {
   try {
     // Using the findByPk method in the sequelize library return a single tag based on its id value using the req.params.id to define that id value
     const singleTagData = await Tag.findByPk(req.params.id, {
-      include: [{ model: Product, through: ProductTag, as: 'taggedProducts' }]
+      include: [{ model: Product, as: 'productTags' }]
     });
 
     // If there is no tag with the id specified in the req.params.id return a 404 status code and a json format message
